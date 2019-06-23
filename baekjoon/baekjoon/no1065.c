@@ -26,7 +26,7 @@ void check(int n)
 
 		for (int i = 100; i <= num; i++)
 		{
-			if ((num % 10) - (num / 10 % 10) == (num / 10 % 10) - (num / 100)) {
+			if ((i % 10) - (i / 10 % 10) == (i / 10 % 10) - (i / 100)) {
 				count++;
 			}
 		}
