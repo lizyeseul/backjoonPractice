@@ -1,11 +1,10 @@
 #include<stdio.h>
 #include<string.h>
 int main() {
-	char word[1000001], alpha[26] = { 0, };
-	int max = 0, flag = 0, maxIndex = 0;
+	char word[1000001];
+	int max = 0, flag = 0, maxIndex = 0, alpha[26] = { 0, };
 	scanf("%s", word);
-	printf("%d\n", strlen(word));
-	for (int i = 0; i < strlen(word); i++) {
+	for (int i = 0; word[i]!='\0'; i++) {
 		int index = word[i] - 97;
 		if (word[i] > 95) {
 			index = word[i] - 97;
@@ -14,6 +13,8 @@ int main() {
 			index = word[i] - 65;
 		}
 		alpha[index]++;
+
+
 		if (alpha[index] > max) {
 			max = alpha[index];
 			flag = 0;
