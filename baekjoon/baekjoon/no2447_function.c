@@ -1,22 +1,54 @@
 #include<stdio.h>
 #include<math.h>
 
-void print(int n, int height);
-int check(int n, int height, int w, int h);
+#define max 6562
+
+int star[max][max] = { 0, };
+void print(int n);
+void Check(int n, int size, int x, int y);
+
 int main() {
 	int n;
 	scanf("%d", &n);
-	int k = log(n) / log(3);
 
-	print(n, k);
+	Check(n, n, 0, 0);
+	print(n);
 
 	return 0;
 }
 
-void print(int n, int height) {
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			if (check(n, height, j, i) == 1) {
+void Check(int n, int size, int x, int y) {
+	//printf("size %2d,  x %2d,  y %2d\n", size, x, y);
+	if (size == 3 && star[x + 1][y + 1] == 0) {
+		star[x + 1][y + 1] = 1;
+		return;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			int tSize = size / 3;
+			int tX = x + (i*tSize);
+			int tY = y+(j*tSize);
+			//printf("size %2d,  x %2d,  y %2d\n", tSize, tX, tY);
+			if (i == 1 && j == 1) {
+				for (int w = tX; w < tX + tSize; w++) {
+					for (int h = tY; h < tY + tSize; h++) {
+						star[w][h] = 1;
+					}
+				}
+			}
+			else {
+				Check(n, tSize, tX, tY);
+			}
+		}
+	}
+
+}
+
+void print(int n) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (star[i][j] == 1) {
 				printf(" ");
 			} else{
 				printf("*");
@@ -25,26 +57,4 @@ void print(int n, int height) {
 		if(i!= n)
 			printf("\n");
 	}
-}
-
-int check(int n, int height, int w, int h) {
-	int flag = 0;
-	for (int p = height; p > 0; p--) {
-		int wei = w, hei = h;
-
-		int range1 = 1;
-		for (int r = 1; r < p; r++) {
-			range1 *= 3;
-		}
-		int range2 = range1 * 2;
-
-		wei %= range1 * 3;
-		hei %= range1 * 3;
-
-		if ((range1 < wei && wei <= range2) && (range1 < hei && hei <= range2)) {
-				flag = 1;
-		}
-		
-	}
-	return flag;
 }
