@@ -1,30 +1,31 @@
 #include<stdio.h>
+#include<math.h>
 int main() {
-	int t, x[10000], y[10000], result[10000];
+	int t, result[10000];
+	unsigned int length[10000];
 	scanf("%d", &t);
 	for (int i = 0; i < t; i++) {
-		scanf("%d%d", &x[i], &y[i]);
+		int x, y;
+		scanf("%d%d", &x, &y);
+		length[i] = y - x;
 	}
 
 	for (int i = 0; i < t; i++) {
-		int l = y[i] - x[i];
-		int count=0, flag=0, re=0;
-		for (int k = 1; k <= l; k++) {
-			count++;
-			if (flag == 0) {
-				flag = 1;
-				k += re;
+		int l = length[i];
+		unsigned int count = 1, temp=0, a=1,b=0;
+		for(count=1; ; count++) {
+			if (count % 2 == 1) {
+				temp = a * (a - 1) + 1;
+				if (temp > l) break;
+				b++;
 			}
 			else {
-				flag = 0;
-				k += re;
-				re++;
+				temp = b*b + 1;
+				if (temp > l) break;
+				a++;
 			}
 		}
-		result[i] = count;
-	}
-	for (int i = 0; i < t; i++) {
-		printf("%d", result[i]);
+		printf("%ld", a+b-1);
 		if (i < t - 1)	printf("\n");
 	}
 	return 0;
