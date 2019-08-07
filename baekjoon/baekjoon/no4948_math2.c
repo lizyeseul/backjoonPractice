@@ -1,27 +1,19 @@
 #include<stdio.h>
+#include<math.h>
 int isSosu(int s);
 int main() {
+	int input;
 
-	int s[10000];
-	scanf("%d", &s[0]);
-	int index = 0;
-	while(s[index]!=0){
-		index++;
-		scanf("%d", &s[index]);
-	}
-
-	for (int k = 0; k < index; k++) {
+	for (int i = 0; i < 123456; i++) {
+		scanf("%d", &input);
+		if (input == 0)
+			break;
 		int count = 0;
-		for (int i = s[k]; i <= s[k] * 2; i++) {
-			if (isSosu(i) == 1) {
-				printf("+%d", i);
+		for (int k = input + 1; k < 2 * input + 1; k++) {
+			if (isSosu(k) == 1)
 				count++;
-			}
 		}
-		printf("%d", count);
-		if(k < index-1) {
-			printf("\n");
-		}
+		printf("%d\n", count);
 	}
 	
 	return 0;
@@ -29,9 +21,9 @@ int main() {
 int isSosu(int s) {
 	if (s == 1)
 		return 0;
-	else if (s == 2)
+	else if (s == 2 || s%2==0)
 		return 1;
-	for (int temp = 2; temp < s / 2 + 1; temp++) {
+	for (int temp = 2; temp <= sqrt(s); temp++) {
 		if (s%temp == 0) {
 			return 0;
 		}
