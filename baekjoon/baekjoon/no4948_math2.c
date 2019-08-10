@@ -13,17 +13,17 @@ int main() {
 		scanf("%d", &input);
 	}
 
-	for (int i = 0; i < 246913; i++) {
+	for (int i = 1; i < 246913; i++) {
 		sosu[i] = isSosu(i);
 	}
 
 	for (int i = 0; i < index; i++) {
 		int q = quest[i];
 		int count = 0; 
-		for (int k = q; k <= q * 2; k++) {
+		for (int k = q+1; k <= q * 2; k++) {
 			count += sosu[k];
 		}
-		printf("%n", count);
+		printf("%d", count);
 		if (i < index - 1)	printf("\n");
 	}
 
@@ -31,9 +31,10 @@ int main() {
 	return 0;
 }
 char isSosu(int s) {
-	if (s == 1)
-		return 1;
-	else if (s == 2 || s%2==0)
+
+	if (s == 2)
+		return 1; 
+	else if (s == 1 || s % 2 == 0)
 		return 0;
 	for (int temp = 2; temp <= sqrt(s); temp++) {
 		if (s%temp == 0) {
