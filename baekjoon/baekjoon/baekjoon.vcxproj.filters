@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="no2798_brute_force.c">
+    <ClCompile Include="no2231_brute_force.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
