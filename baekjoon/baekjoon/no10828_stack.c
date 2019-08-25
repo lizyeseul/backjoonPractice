@@ -2,16 +2,16 @@
 #include<string.h>
 #include<stdlib.h>
 
-int stack[10002], top =-1, pu[10001];
+int stack[10002], top =-1, pu[20001];
 
 void push(int x);
 int pop();
 
 int main() {
-	int n, command[10000];
+	int n, command[20000];
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++) {
-		char com[10];
+		char com[20];
 		scanf("%s", &com);
 		if (strcmp(com, "push")==0) { 
 			command[i] = 1; 
@@ -71,7 +71,7 @@ int main() {
 }
 
 int pop() {
-	if (top == -1)
+	if (top <0)
 		return -1;
 	else {
 		int temp = stack[top];
