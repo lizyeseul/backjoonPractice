@@ -27,7 +27,13 @@ int main() {
 int isNext(int depth, char color, int pre) {
 	if (depth == n - 1) {
 		if (total > pre + min(h[depth].r, h[depth].g, h[depth].b)) {
-			total = pre + min(h[depth].r, h[depth].g, h[depth].b);
+			int r = h[depth].r;
+			int g = h[depth].g;
+			int b = h[depth].b;
+			if (color == 'r')	r = 1001;
+			else if (color == 'g')	g = 1001;
+			else if (color == 'b')	b = 1001;
+			total = pre + min(r,g,b);
 		}
 		return 0;
 	}
