@@ -27,9 +27,15 @@ int main() {
 	}
 	else {
 		for (int i = 1; i <= n; i++) {
-			make[i] = 1;
+			if (i == 1) {
+				make[i] = 0;
+			}
+			else {
+				make[i] = 1;
+			}
+			
 		}
 	}
-		printf("%d\n", make[n]);
+		printf("%d", make[n]);
 	return 0;
 }
