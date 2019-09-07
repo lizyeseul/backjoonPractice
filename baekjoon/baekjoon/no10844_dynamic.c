@@ -2,15 +2,16 @@
 int main() {
 	int n;
 	scanf("%d", &n);
-	long long stair[100][10] = { 0, };
+	long long stair[101][10] = { 0, };
 	if (n == 1) {
 		printf("9");
 	}
 	else {
-		for (int i = 0; i < 10; i++) {
-			stair[0][i] = 1;
+		stair[1][0] = 0;
+		for (int i = 1; i < 10; i++) {
+			stair[1][i] = 1;
 		}
-		for (int i = 1; i <= n; i++) {
+		for (int i = 2; i <= n; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (j - 1 >= 0) {
 					stair[i][j] += stair[i - 1][j - 1];
@@ -25,6 +26,7 @@ int main() {
 		for (int i = 0; i < 10; i++) {
 			total += stair[n][i];
 		}
+		total %= 1000000000;
 		printf("%d", total);
 	}
 	return 0;
