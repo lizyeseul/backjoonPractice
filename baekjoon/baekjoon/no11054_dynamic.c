@@ -9,7 +9,6 @@ int main() {
 		scanf("%d", &seq[i]);
 	}
 
-
 	orm[0] = 1;
 	for (int i = 1; i < n; i++) {
 		int max = 0;
@@ -23,7 +22,6 @@ int main() {
 		orm[i] = max + 1;
 	}
 
-	
 	nearim[n-1] = 1;
 	for (int i = n-2; i >= 0; i--) {
 		int min = 0;
@@ -37,8 +35,6 @@ int main() {
 		nearim[i] = min + 1;
 	}
 	
-
-
 	int total = 0;
 	for (int i = 0; i < n; i++) {
 		int sum = orm[i] + nearim[i];
