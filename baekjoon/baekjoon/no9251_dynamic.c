@@ -5,30 +5,17 @@ int main() {
 	char s1[1001], s2[1001];
 	scanf("%s", &s1);
 	scanf("%s", &s2);
-	int lcs[1000][1000] = { 0, };
-
-	for (int i = 0; i < strlen(s1); i++) {
-		for (int j = 0; j < strlen(s2); j++) {
-			if (i == 0 && j == 0) {
-				lcs[0][0] = 0;
-			}
-			else if (i == 0 && j != 0) {
-				lcs[i][j] = lcs[i][j - 1];
-			}
-			else if (i != 0 && j == 0) {
-				lcs[i][j] = lcs[i - 1][j];
+	int lcs[1002][1002] = { 0, };
+	for (int i = 1; i <= strlen(s2); i++) {
+		for (int j = 1; j <= strlen(s1); j++) {
+			if (s2[i - 1] == s1[j - 1]) {
+				lcs[i][j] = lcs[i - 1][j - 1] + 1;
 			}
 			else {
 				lcs[i][j] = max(lcs[i][j - 1], lcs[i - 1][j]);
 			}
-
-			if (s1[i] == s2[j]) {
-				lcs[i][j]++;
-			}
 		}
 	}
-
-	printf("%d", lcs[strlen(s1) - 1][strlen(s2) - 1]);
-
+	printf("%d", lcs[strlen(s2)][strlen(s1)]);
 	return 0;
 }
