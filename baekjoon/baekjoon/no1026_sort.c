@@ -1,5 +1,5 @@
 #include<stdio.h>
-void main() {
+int main() {
 	int n;
 	scanf("%d", &n);
 	int a[50], b[50];
@@ -10,13 +10,15 @@ void main() {
 		scanf("%d", &b[i]);
 	}
 
-	int index[50];
+	int index[50] = { 0, };
+	int indexNum = -1;
 	for (int i = 0; i < n; i++) {
-		int count = 0;//b
+		int min = 9999;
 		for (int j = 0; j < n; j++) {
 			//b
-			if (b[i] > b[j] && i != j) {
-				count++;
+			if (b[j] < min && index[j] == 0) {
+				min = b[j];
+				indexNum = j;
 			}
 
 			//a
@@ -26,16 +28,13 @@ void main() {
 				a[j] = temp;
 			}
 		}
-		index[i] = count;
+		index[indexNum] = i+1;
 	}
-
-	//2 4 5 3 1
-	//1 3 4 2 0
-
-	//0 1 1 1 6
+	
 	int total = 0;
 	for (int i = 0; i < n; i++) {
-		total += a[n - 1 - index[i]] * b[i];
+		total += a[n - index[i]] * b[i];
 	}
 	printf("%d", total);
+	return 0;
 }
