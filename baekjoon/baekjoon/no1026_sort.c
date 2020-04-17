@@ -1,5 +1,6 @@
 #include<stdio.h>
 int main() {
+	//input
 	int n;
 	scanf("%d", &n);
 	int a[50], b[50];
@@ -10,6 +11,7 @@ int main() {
 		scanf("%d", &b[i]);
 	}
 
+	//sort
 	int index[50] = { 0, };
 	int indexNum = -1;
 	for (int i = 0; i < n; i++) {
@@ -31,6 +33,7 @@ int main() {
 		index[indexNum] = i+1;
 	}
 	
+	//output
 	int total = 0;
 	for (int i = 0; i < n; i++) {
 		total += a[n - index[i]] * b[i];

@@ -46,21 +46,21 @@ int main() {
 			count++;
 		}
 	}
+
 	n = count;
 	
-	for (int i = 0; i < n-1; i++) {
-		for (int j = i+1; j < n; j++) {
-			if (compare(word[i], word[j]) == 1) {
-				strcpy(temp, word[i]);
-				strcpy(word[i], word[j]);
-				strcpy(word[j], temp);
-			}
+	for (int i = 1; i < n; i++) {
+		int j = i-1;
+		while (compare(word[j+1], word[j]) == 0 && j>=0) {
+			strcpy(temp, word[j+1]);
+			strcpy(word[j+1], word[j]);
+			strcpy(word[j], temp);
+			j--;
 		}
 	}
 	for (int i = 0; i < n; i++) {
-		printf("%s", word[i]);
+		printf("%s\n", word[i]);
 	}
 	
 	return 0;
 }
-

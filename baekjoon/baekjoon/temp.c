@@ -1,85 +1,102 @@
-#include <stdio.h>
-#include <math.h>
+#include<stdio.h>
+#include<string.h>
 
-void main()
+int main()
 {
+
+	char word[20000][51];
 	int n;
-	int a[1000], b[1000];
-	int s = 0;
 	scanf_s("%d", &n);
 
-	//array a
-	for (int i = 0; i < n; i++) {
-		scanf_s("%d", &a[i]);
+	//단어 입력 받기 
+	getc(stdin);
+	for (int i = 0; i < n; i++)
+	{
+		gets(word[i]);
+
 	}
 
-	//array b
-	for (int i = 0; i < n; i++) {
-		scanf_s("%d", &b[i]);
+	int i, j;
+
+	int c[50] = { 0, };
+	//문자열 길이 순서대로 정렬 시키기 
+	for (i = 0; i < n - 1; i++)
+	{
+		j = i;
+		while (j >= 0 && strlen(word + j) > strlen(word + j + 1))
+		{
+			char temp[51];
+			strcpy(temp, word + j);
+			strcpy(word + j, word + j + 1);
+			strcpy(word + j + 1, temp);
+
+			j--;
+		}
+
+		//각각의 자리수의 해당하는개 몇개인지 
+		c[strlen(word[i])]++;
 	}
 
+
+
+	for (int i = 0; i < n; i++)
+		puts(word + i);
+	c[strlen(word[n - 1])]++;
+	int check = 0;
+	int same[10] = { 0, };
+	int same_count = 0;
+	int num = 0;
+
+	//문자열 길이가 같은 것끼리 사전식으로 정렬 
+	while (check != n)
+	{
+
+		while (c[num] != 0)
+		{
+			if (c[num] == 1)
+				check++;
+			else {
+				for (int i = check; i < check + c[num] - 1; i++)
+				{
+					int j = i;
+					while (strcmp(word[j], word[j + 1]) != -1)
+					{
+						char temp[100];
+						strcpy(temp, word + j);
+						strcpy(word + j, word + j + 1);
+						strcpy(word + j + 1, temp);
+
+						//같은 문자열은 제외시키기
+						if (strcmp(word[j], word[j + 1]) == 0)
+						{
+							same[same_count] = j;
+							same_count++;
+						}
+						j--;
+
+					}
+				}
+				check = check + c[num];
+			}
+			num++;
+
+		}
+		num++;
+		check++;
+
+	}
 	/*
- 5
- 1 1 1 6 0
- 2 7 8 3 1 -> 4(4)
- 
+	printf("result");
 
- 1 1 0 1 6
- */
-	int min, max;
-	int inA[1000], inB[1000];
-	int indexA, indexB;
+	int same_n = 0;
 
-	for (int i = 0; i < n; i++) {
-		min = 9999;
-		max = -1;
-		for (int j = 0; j < n; j++) {
-			for (int k = 0; k < i + 1; k++) {//index array
-				if (inB[k] == j)
-					continue;
-
-				if (min > b[j]) {
-					min = b[j];
-					indexB = j;
-					printf("----------------------- b %d\n", indexB);
-				}
-			}
-
-			for (int k = 0; k < i + 1; k++) {
-				if (inA[k] == j) {
-					continue;
-				}
-				if (max < a[j]) {
-					max = a[j];
-					indexA = j;
-					printf("----------------------- a %d\n", indexA);
-				}
-			}
-		}
-
-		inA[i] = indexA;
-		inB[i] = indexB;
-		printf("%d\n", min);
-
-		int temp = a[inA[i]];
-		a[inA[i]] = a[inB[i]];
-		a[inB[i]] = temp;
-
-		printf("[a]\n");
-		for (int i = 0; i < n; i++) {
-			printf("%d ", a[i]);
-		}
-		printf("\n");
+	for (int i = 0; i < n; i++)
+	{
+		if (same[same_n] != i)
+			puts(word[i]);
+		else
+			same_n++;
 	}
-
-	printf("\n[indexA]\n");
-	for (int i = 0; i < n; i++) {
-		printf("%d ", inA[i]);
-	}
-
-	printf("\n[indexB]\n");
-	for (int i = 0; i < n; i++) {
-		printf("%d ", inB[i]);
-	}
-
+	*/
+	return 0;
 }
