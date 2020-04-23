@@ -4,13 +4,13 @@ struct member {
 	int age;
 	char name[101];
 };
-int sorted[200][100000] = { 0, };
+int sorted[201][100001] = { 0, };
 int findIndex(int n);
 int main() {
 	int n;
 	scanf("%d", &n);
 	
-	struct member m[100000];
+	struct member m[100001];
 	for (int i = 0; i < n; i++) {
 		int age;
 		scanf("%d%s", &age, &m[i].name);
@@ -18,7 +18,7 @@ int main() {
 		sorted[age][findIndex(age)] = i+1;
 	}
 
-	for (int i = 0; i < 200; i++) {
+	for (int i = 0; i < 201; i++) {
 		int index = 0;
 		while (sorted[i][index] != 0) {
 			int next = sorted[i][index]-1;
