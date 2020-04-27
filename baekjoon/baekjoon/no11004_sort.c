@@ -1,56 +1,58 @@
 #include <stdio.h>
-int temp[5000];
-int arr[5000] = { 0, };
-void partition(int arr[], int start, int end, int k);
-void merge(int arr[], int start, int middle, int end);
+int temp[5000000];
+
+void quick(int arr[], int start, int end, int k);
 int main() {
+
+	int arr[5000000];
+	
 	int n, k;
 	scanf("%d%d", &n, &k);
-
+	
 	for (int i = 0; i < n; i++) {
 		scanf("%d", &arr[i]);
 	}
-	partition(arr, 0, n - 1, k);
 	
+	quick(arr, 0, n-1, k-1);
+
 	printf("%d", arr[k-1]);
 	
 	return 0;
 }
-void partition(int arr[], int start, int end, int k) {
+
+void quick(int arr[], int start, int end, int k) {
 	if (start >= end) {
 		return;
 	}
-	int middle = (start + end) / 2;
-	partition(arr, start, middle,k);
-	partition(arr, middle + 1, end,k);
-	merge(arr, start, middle, end);
-}
-void merge(int arr[], int start, int middle, int end) {
-	int left = start;
-	int right = middle+1;
-	int index = start;
-	while (index <= end) {
-		if (left <= middle && right <= end) {
-			if (arr[left] < arr[right]) {
-				temp[index] = arr[left];
-				left++;
-			}
-			else {
-				temp[index] = arr[right];
-				right++;
-			}
-		}
-		else if (left <= middle && right > end) {
-			temp[index] = arr[left];
+
+	int pivot = start;
+	int left = start + 1;
+	int right = end;
+
+	int count = 0;
+	while (left <= right && count < 20) {
+		while (arr[pivot] > arr[left] && left < end) {
 			left++;
+			count++;
 		}
-		else if (left > middle && right <= end) {
-			temp[index] = arr[right];
-			right++;
+		while (arr[pivot] < arr[right] && start < right) {
+			right--;
+			count++;
 		}
-		index++;
+		if (left < right) {
+			int temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+		} else {
+			int temp = arr[pivot];
+			arr[pivot] = arr[right];
+			arr[right] = temp;
+		}
 	}
-	for (int i = start; i <= end; i++) {
-		arr[i] = temp[i];
+	if (start <= k && k <= right - 1) {
+		quick(arr, start, right - 1, k);
+	}
+	if (right + 1 <= k && k <= end) {
+		quick(arr, right + 1, end, k);
 	}
 }
