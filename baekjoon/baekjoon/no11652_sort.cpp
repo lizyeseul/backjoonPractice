@@ -9,7 +9,11 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		scanf("%lld", &arr[i]);
 	}
-	sort(arr, arr+(n - 1));
+	sort(arr, arr+n );
+
+	for (int i = 0; i < n; i++) {
+		printf("%lld ", arr[i]);
+	}
 
 	int maxIndex = 0;
 	int maxCount = 1;
