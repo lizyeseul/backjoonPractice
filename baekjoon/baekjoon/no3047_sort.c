@@ -1,25 +1,21 @@
 #include<stdio.h>
-void main() {
-	//a<b<c
+int swap(int* a, int*b) {
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+int main() {
 	int a, b, c;
 	scanf("%d%d%d", &a, &b, &c);
 	if (a > b) {
-		int temp;
-		temp = a;
-		a = b;
-		b = temp;
+		swqp(a, b);
 	}
 	if (a > c) {
-		int temp;
-		temp = a;
-		a = c;
-		c = temp;
+		swqp(a, c);
 	}
 	if (b > c) {
-		int temp;
-		temp = c;
-		c = b;
-		b = temp;
+		swqp(c, b);
 	}
 
 	char abc[3];
