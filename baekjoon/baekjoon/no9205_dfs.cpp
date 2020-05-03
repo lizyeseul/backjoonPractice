@@ -1,4 +1,5 @@
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
 struct co {
@@ -9,8 +10,13 @@ co con[53];
 co destination;
 
 bool dfs(int n, int cur);
-int distance(co a, co b);
-
+int distance(int ax, int ay, int bx, int by);
+bool compare(co a, co b) {
+	if (a.x == b.x) {
+		return a.y < b.y;
+	}
+	return a.x < b.x;
+}
 int main() {
 	int t, n;
 	cin >> t;
@@ -32,6 +38,8 @@ int main() {
 			}
 		}
 
+		//sort(con, con+n+1, compare);
+
 		bool result = dfs(n, 0);
 		if (result == true) {
 			cout << "happy" << endl;
@@ -42,28 +50,22 @@ int main() {
 	return 0;
 }
 bool dfs(int n, int cur) {
-	if (distance(con[cur], destination) <= 1000){
+	if (distance(con[cur].x, con[cur].y, destination.x, destination.y) <= 1000){
 		return true;
 	}
-	else {
-		for (int c = 0; c <= n; c++) {
-			if (distance(con[cur], con[c]) <= 1000 && con[c].check == false) {
-				con[c].check = true;
-
-				bool result = dfs(n, c);
-				if (result == true) {
-					return true;
-				}
-
-				con[c].check = false;
+	for (int c = 0; c <= n; c++) {
+		if (distance(con[cur].x, con[cur].y, con[c].x, con[c].y) <= 1000 && con[c].check == false) {
+			con[c].check = true;
+			if (dfs(n, c) == true) {
+				return true;
 			}
 		}
-		return false;
 	}
+	return false;
 }
-int distance(co a, co b) {
-	int dx = a.x - b.x;
-	int dy = a.y - b.y;
+int distance(int ax, int ay, int bx, int by) {
+	int dx = ax - bx;
+	int dy = ay - by;
 	if (dx < 0)	dx *= -1;
 	if (dy < 0)	dy *= -1;
 	return dx+dy;
