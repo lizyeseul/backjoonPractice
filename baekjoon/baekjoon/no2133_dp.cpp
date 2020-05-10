@@ -5,8 +5,8 @@ int dp(int n) {
 		arr[n] = 0;
 	}
 	else if (arr[n] == 0) {
-		arr[n] = 3*dp(n-2);
-		for (int i = n-4; i >=0; i -= 2) {
+		arr[n] = 3 * dp(n - 2);
+		for (int i = n - 4; i >= 0; i -= 2) {
 			arr[n] += 2 * dp(i);
 		}
 	}

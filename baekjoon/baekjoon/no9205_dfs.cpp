@@ -1,5 +1,4 @@
 #include<iostream>
-#include<algorithm>
 using namespace std;
 
 struct co {
@@ -37,9 +36,6 @@ int main() {
 				con[i] = temp;
 			}
 		}
-
-		//sort(con, con+n+1, compare);
-
 		bool result = dfs(n, 0);
 		if (result == true) {
 			cout << "happy" << endl;
