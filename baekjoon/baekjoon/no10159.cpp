@@ -14,7 +14,7 @@ int main() {
 		if (arr[x - 1][y - 1] != true) {
 			arr[x - 1][y - 1] = true;
 			result[x - 1]--;
-			result[y - 1]--;\
+			result[y - 1]--;
 		}
 	}
 
