@@ -33,8 +33,6 @@ int main() {
 	}
 	sort(v.begin(), v.end());
 
-
-
 	int cycle[101];
 	float total = 0;
 	for (int i = 1; i <= n; i++) {

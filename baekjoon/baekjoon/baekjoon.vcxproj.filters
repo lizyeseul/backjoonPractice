@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="no9095_dp.cpp">
+    <ClCompile Include="no1647_크루스칼.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="no4386_위상정렬.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
