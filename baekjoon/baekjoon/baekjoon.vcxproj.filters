@@ -18,7 +18,10 @@
     <ClCompile Include="no1647_크루스칼.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="no4386_위상정렬.cpp">
+    <ClCompile Include="no4386_크루스칼.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="no2156_dp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
