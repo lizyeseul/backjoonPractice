@@ -17,6 +17,22 @@ public:
 };
 vector<Edge> v;
 
+int getParent(int set[], int x) {
+	if (set[x] == x) return x;
+	return set[x] = getParent(set, set[x]);
+}
+void unionParent(int set[], int a, int b) {
+	a = getParent(set, a);
+	b = getParent(set, b);
+	if (a < b) set[b] = a;
+	else set[a] = b;
+}
+int find(int set[], int a, int b) {
+	a = getParent(set, a);
+	b = getParent(set, b);
+	if (a == b) return 1;
+	else return 0;
+}
 int main() {
 	int n, m;
 	scanf("%d%d", &n, &m);
@@ -35,19 +51,21 @@ int main() {
 	int total = 0;
 	int count = 0;
 	for (int i = 0; i < v.size(); i++) {
-		int l = cycle[v[i].left];
-		int r = cycle[v[i].right];
 
-		if (cycle[l] == cycle[r]) {
-			continue;
+		
+		if (!find(cycle, v[i].left, v[i].right)) {
+			total += v[i].weight;
+			count++;
+			if (count == n - 2) {
+				break;
+			}
+			unionParent(cycle, v[i].left, v[i].right);
 		}
-
+		/*
 		printf("%d %d, %d %d : %d\n", v[i].left, v[i].right, l, r,v[i].weight);
 		total += v[i].weight;
 		count++;
-		if (count == n - 2) {
-			break;
-		}
+		
 
 		if (l < r) {
 			for (int i = 1; i <= n; i++) {
@@ -62,7 +80,7 @@ int main() {
 					cycle[i] = r;
 				}
 			}
-		}
+		}*/
 	}
 	printf("%d", total);
 	return 0;
