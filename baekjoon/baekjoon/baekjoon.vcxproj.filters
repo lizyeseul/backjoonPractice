@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="no1305_KMP.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="no2193_dp.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="no1774_크루스칼.cpp">
+    <ClCompile Include="no1937_그리디.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
