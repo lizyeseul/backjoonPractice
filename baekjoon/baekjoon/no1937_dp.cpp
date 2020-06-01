@@ -5,15 +5,6 @@ int **forest;
 int **memo;
 int maxRoot=0;
 
-void printMemo(int n) {
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			printf("%d ", memo[i][j]);
-		}
-		printf("\n");
-	}
-	printf("----------------\n");
-}
 bool isIn(int x, int y, int n) {
 	return (x >= 0 && x < n) && (y >= 0 && y < n);
 }
@@ -40,17 +31,15 @@ int dfs(int x, int y, int n) {
 			}
 		}
 	}
-	if (canGo == false) {
-		memo[x][y] = 1;
-	}
-	else {
-		memo[x][y] = count + 1;
-	};
 	if (memo[x][y] > maxRoot) {
 		maxRoot = memo[x][y];
 	}
-
-	return memo[x][y];
+	if (canGo == false) {
+		return memo[x][y]=1;
+	}
+	else {
+		return memo[x][y] = count + 1;
+	}
 }
 int main() {
 	int n, b;
