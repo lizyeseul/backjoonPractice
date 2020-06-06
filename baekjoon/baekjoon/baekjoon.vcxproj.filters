@@ -15,16 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="no2437_그리디.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="no1783_그리디.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="no1969_그리디.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="no2812_그리디.cpp">
+    <ClCompile Include="no3830_그래프.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
