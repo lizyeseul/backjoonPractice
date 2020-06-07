@@ -17,7 +17,6 @@ void unionParent(int cost[], int set[], int a, int b, int w) {//union
 	int bp = getParent(cost, set, b);
 
 	if (ap < bp) {
-		//printf("a %d:%d | b %d : %d\n", a, cost[a], b, cost[b]);
 		cost[bp] -= cost[b] - cost[a] - w;
 		set[bp] = ap;
 	}
@@ -25,11 +24,6 @@ void unionParent(int cost[], int set[], int a, int b, int w) {//union
 		cost[ap] += cost[b] - cost[a] - w;
 		set[ap] = bp;
 	}
-	/*
-	printf("cost\n");
-	for (int i = 1; i < 6; i++) {
-		printf("%d ", cost[i]);
-	}printf("\n");*/
 }
 bool isSameParent(int cost[], int set[], int a, int b) {//makeset
 	int ap = getParent(cost, set, a);
@@ -41,23 +35,6 @@ bool isSameParent(int cost[], int set[], int a, int b) {//makeset
 		return false;
 	}
 }
-
-/*
-
-5 9
-! 1 2 100
-? 1 2
-! 2 3 100
-? 2 3
-? 1 3
-! 4 3 150
-? 4 1
-! 5 4 50
-? 5 3
-0 0
-
-
-	*/
 int main() {
 	int n, m;
 	while (true) {
@@ -90,11 +67,9 @@ int main() {
 				if (isSameParent(cost, check, a, b) == true) {
 					getParent(cost, check, a);
 					getParent(cost, check, b);
-					printf("=========================");
 					printf("%d\n", cost[b] - cost[a]);
 				}
 				else {
-					printf("=========================");
 					printf("UNKNOWN\n");
 				}
 			}
