@@ -1,5 +1,5 @@
 #include <stdio.h>
-void quicksort(int *arr[], int start, int end);
+void quicksort(int arr[], int start, int end);
 int main() {
 	int arr[10] = { 3,7,8,1,5,9,6,10,2,4 };
 	quicksort(arr, 0, 9);
@@ -9,7 +9,7 @@ int main() {
 	}
 	return 0;
 }
-void quicksort(int *arr[], int start, int end) {
+void quicksort(int arr[], int start, int end) {
 	if (start >= end) {
 		return;
 	}
