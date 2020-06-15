@@ -21,5 +21,8 @@
     <ClCompile Include="no1507_그래프.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="kakao_무지의먹방라이프.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
