@@ -3,31 +3,40 @@
 #include <iostream>
 using namespace std;
 
-string numbers = "0123456789ABCDEF";
-
+char numbers[16] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' };
 string game(int i, int n) {
-	if (i / n == 0) {
-		return numbers.substr(i % n, 1);
+	string result = "";
+	int tmp;
+	while (i / n != 0) {
+		tmp = i % n;
+		result = numbers[tmp] + result;
+		i /= n;
 	}
-	else {
-		return game(i / n, n) + numbers[i % n];
-	}
+	return numbers[i%n] + result;
 }
 
 string solution(int n, int t, int m, int p) {
-	string answer = "";
-	string answer2 = "";
-	int i = 0, cur = 0;
-	while (answer2.length() < t) {
-		answer += game(i++, n);
-		while (cur < t && (p - 1) + m * (cur - 1) < answer2.length()) {
-			answer2 += answer.substr((p - 1) + m * (cur++ - 1), 1);
+	int i = 0;
+	string answer = game(i, n);
+	int idx = p-1;
+	string result = "";
+	while (result.length() < t) {
+		answer = game(i++, n);
+		if (answer.length() <= idx) {
+			idx -= answer.length();
+			continue;
 		}
+		for (int cur = idx; cur < answer.length(); cur+=m) {
+			result += answer[cur];
+			if (result.length() == t) return result;
+			idx += m;
+		}
+		idx -= answer.length();
 	}
-	return answer2;
+	return result;
 }
 
 int main() {
-	cout << solution(2, 4, 2, 1);
+	cout << solution(16, 16, 2, 2);
 	return 0;
 }
