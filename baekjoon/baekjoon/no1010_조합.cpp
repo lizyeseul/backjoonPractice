@@ -1,15 +1,13 @@
 #include<stdio.h>
 int main() {
 	int t;
-	long long a, b, res;
+	long long n, r, res;
 	scanf("%d", &t);
 	while (t--) {
-		scanf("%lld%lld", &b, &a);
+		scanf("%lld%lld", &r, &n);
 		res = 1;
-		for (int i = 1; i <= b; ++i)
-		{
-			res = (res * (a - i + 1)) / i;
-		}
+		for (int i = 1; i <= r; ++i)
+			res = (res * (n - i + 1)) / i;
 		printf("%lld\n", res);
 	}
 	return 0;

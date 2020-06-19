@@ -18,5 +18,11 @@
     <ClCompile Include="kaako_n진수게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="sort_heap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="no1010_조합.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

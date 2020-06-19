@@ -6,13 +6,11 @@ using namespace std;
 char numbers[16] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' };
 string game(int i, int n) {
 	string result = "";
-	int tmp;
 	while (i / n != 0) {
-		tmp = i % n;
-		result = numbers[tmp] + result;
+		result = numbers[i % n] + result;
 		i /= n;
 	}
-	return numbers[i%n] + result;
+	return numbers[i % n] + result;
 }
 
 string solution(int n, int t, int m, int p) {
