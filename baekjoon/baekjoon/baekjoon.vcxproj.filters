@@ -18,5 +18,8 @@
     <ClCompile Include="no5557_dp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="no6603_bfs.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
