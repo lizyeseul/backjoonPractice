@@ -3,37 +3,29 @@
 using namespace std;
 vector<int> v;
 vector<int> lotto;
-void printV() {
-	for (int l = 0; l < v.size(); l++) {
-		printf("%d -> ", v[l]);
-	}
-	printf("\n\n");
-}
-void printL() {
-	for (int l = 0; l < lotto.size(); l++) {
-		printf("%d -> ", lotto[l]);
-	}
-	printf("\n\n");
-}
+// 7 1 2 3 4 5 6 7 0
 void dfs(int num) {
-	if (num == v.size() - 1 && lotto.size() <= 5) {
+	//printf("\n%d \n", num);
+	lotto.push_back(v[num]);
+	//for (int l = 0; l < lotto.size(); l++) printf("%d -> ", lotto[l]); printf("\n---------\n");
+	if (num == v.size() -1 && lotto.size() <= 5) {
+		lotto.pop_back();
 		return;
 	}
-	//printf("num : %d\n", num);
 	if (lotto.size() == 6) {
 		for (int l = 0; l < lotto.size(); l++) {
 			printf("%d ", lotto[l]);
 		}
 		printf("\n");
+		lotto.pop_back();
 		return;
 	}
-
 	for (int idx = num + 1; idx < v.size(); idx++) {
-		//printf("idx : %d\n", idx);
-		lotto.push_back(v[idx]);
+		//printf("num %d, idx %d\n",num,idx);
 		dfs(idx);
-		lotto.pop_back();
 	}
+	lotto.pop_back();
+	return;
 }
 int main() {
 	int k,n;
@@ -46,13 +38,11 @@ int main() {
 			v.push_back(n);
 		}
 		for (int i = 0; i < v.size(); i++) {
-			lotto.push_back(v[i]);
 			dfs(i);
-			lotto.pop_back();
 		}
 		printf("\n");
+		printf("--\n");
 		scanf("%d", &k);
 	}
 	return 0;
 }
-// 7 1 2 3 4 5 6 7 0
